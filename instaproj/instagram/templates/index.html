@@ -1,0 +1,66 @@
+{% extends 'timeline/base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+  
+
+
+<div class=newscard>
+<!-- Section: Social news card -->
+<section class="my-5">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-10 col-lg-8">
+
+      <!-- Card -->
+      <div class="card news-card">
+
+        <!-- Heading-->
+        <div class="card-body">
+          <div class="content">
+            
+            
+          </div>
+        </div>
+        {% for img in image %}
+        <!-- Card image-->
+        <img class="card-img-top" src="{{img.photo_image.url}}" alt="Card image cap" ondblclick="thumbsup()">
+        
+        <!-- Card content -->
+        <div class="card-body">
+
+          <!-- Social meta-->
+          <div class="social-meta">
+            <p>{{img.caption}}</p>
+            <span><i class="far fa-heart" onclick="thumbsup()"></i>{{upvote}}likes</span>
+            <p><i class="fas fa-comment"></i>13 comments</p>
+          </div>
+          <hr>
+          <!-- Comment input -->
+          <div class="md-form">
+            <i class="far fa-heart prefix"></i>
+            <input placeholder="Add Comment..." type="text" id="form5" class="form-control">
+          </div>
+
+        </div>
+        <!-- Card content -->
+        {% endfor %}
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Social news card -->
+</div>
+</div>
+
+
+{% endblock %}

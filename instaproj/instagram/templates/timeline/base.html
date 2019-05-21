@@ -1,0 +1,54 @@
+  {% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    {% if title%}
+    <title>Instagram</title>
+    {% else%}
+    <title>Gram</title>
+    {% endif %}  
+
+    {% block styles %}
+      {% bootstrap_css %}
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock %}  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Satisfy" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/css/mdb.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  </head>
+  <body>
+    {%include "navbar.html" %}
+    {%block content %}
+    
+    {% endblock %}
+    {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+ 
+      {% bootstrap_javascript %}
+      <scripts>
+          upvote = 0;
+          thumbsUp(){
+          this.upvote++;
+              }
+      </scripts>
+    {% endblock %}
+    <style>
+    body{
+      background-color: #EAEAEA;
+    }
+    </style>
+  </body>
+</html> 

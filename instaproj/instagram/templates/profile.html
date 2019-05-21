@@ -1,0 +1,44 @@
+{% extends 'timeline/base.html' %}
+{% block content %}
+{{block.super}}
+<br><br>
+<div class="container">
+<div class="span8">
+    <div class="row-fluid">
+  <div class="span2" >
+  {% for img in profile%}
+
+  <img src="{{img.profile_photo.url}}" class="img-circle" alt="avatar">
+  </div>
+  <div class="span6">
+    <h2>{{img.name}}</h2>
+    <h6>{{img.bio}}</h6>
+    <div class="rows">
+    <div class="col-md-4 col-lg-4">
+        <button>Followers</button>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <button>Following</button>
+    </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="span2">
+      <div class="btn-group">
+          <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+              Action 
+              <span class="icon-cog icon-white"></span><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+              <li><a href="#"><span class="icon-wrench"></span> Modify</a></li>
+              <li><a href="#"><span class="icon-trash"></span> Delete</a></li>
+          </ul>
+      </div>
+  </div>
+  </div>
+  
+</div>       
+</div>
+
+
+{% endblock %}
