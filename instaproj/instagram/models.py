@@ -63,8 +63,8 @@ class Like(models.Model):
 
 class Comments(models.Model):
     comm = models.CharField(max_length = 100, blank = True)
-    image = models.ForeignKey(Image, related_name = "comments")
-    user = models.ForeignKey(User, related_name = "comments")
+    image = models.ForeignKey(Image,on_delete=models.deletion.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.deletion.CASCADE)
     
 
 def save_comment(self):
