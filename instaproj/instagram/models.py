@@ -10,7 +10,7 @@ class Image(models.Model):
   caption = models.TextField()
   profile = models.ForeignKey('Profile',on_delete=models.deletion.CASCADE,)
   likes = models.ManyToManyField(User, related_name = "likes", blank = True)
-  user = models.ForeignKey(User, related_name = "posts", blank = True)
+  
   
 
   def save_image(self):

@@ -24,18 +24,26 @@
   </div>
   {% endfor %}
   <div class="span2">
-      <div class="btn-group">
-          <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-              Action 
-              <span class="icon-cog icon-white"></span><span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-              <li><a href="update/"><span class="icon-wrench"></span> Modify</a></li>
-              <li><a href="#"><span class="icon-trash"></span> Delete</a></li>
-          </ul>
-      </div>
-  </div>
-  </div>
+    <div class="container">        
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile
+        </button>
+        <ul class="dropdown-menu">
+        <li><a href="update/"><span class="icon-wrench"></span> Modify</a></li>
+        <li><a href="/accounts/password/change">Change Password</a></li>
+        </ul>
+    </div>       
+    <div class="profile-images">
+    {% for img in image %}
+    <a href="{% url 'image_view' image.id %}"></a>
+    <div class="image-card">
+    <img  src="{{img.photo_image.url}}" alt="Card image cap">
+    {%endfor%}
+    </div>
+    </a>         
+    </div>
+    </div>
+    </div>
   
 </div>       
 </div>

@@ -1,75 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-<!--Navbar -->
-<div class="navbar">
-
-
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark lighten-1">
-  <a class="navbar-brand" href="#" style="color: black;"><i class="fab fa-instagram"></i> Instagram</a></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#" style="color:black;">Home
-          <span class="sr-only" style="color:black">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Dropdown
-        </a>
-        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">1
-          <i class="fas fa-envelope"></i>
-        </a>
-      </li>
-      <li class="nav-item avatar dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          
-          <img src="{{profile.profile_url.url}}" class="rounded-circle z-depth-0"
-            alt="avatar image">
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-          aria-labelledby="navbarDropdownMenuLink-55">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
+  <div id='nav-container'>
+    <div id='navbar'>
+      <div id='left'>
+        <a href='#'><img src='https://visualpharm.com/assets/854/Instagram-595b40b75ba036ed117d636c.svg' id='logo-icon'></a>
+        <a href='#'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png' id='logo-name'></a>
+      </div>
+      {% if user.is_authenticated %}
+      <div id='center'><input id="input-field" type="text" placeholder='Search' style="text-align: center"></div>
+      <div id='right'>
+        <a href="/logout">Logout</a>
+        <a href='#'><img src='http://freeiconbox.com/icon/256/23228.png' class='nav-icon'></a>
+        <a href='#'><img src='http://image.flaticon.com/icons/png/128/126/126471.png' class='nav-icon'></a>
+        <a href='#'><img src='http://www.iconsfind.com/wp-content/uploads/2015/11/20151128_56592ddb44f95-210x210.png' class='nav-icon'></a>
+      </div>
+      {%else%}
+      <a class='btn btn-default' href="/accounts/login">Login</a>
+      {%endif%}
+    </div>
   </div>
-</nav>
-<!--/.Navbar -->
-</div>
-<style>
-
-.navbar{
-  background-color: white;
+  <style>
+  body {
+  margin: 0;
+  background: #fbfbfb;
 }
-</style>
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#nav-container {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #e3e3e3;
+  margin-bottom: 70px;
+  background: white;
+}
+
+#navbar {
+  min-width: 500px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 25px 0 25px 0;
+}
+
+#left {
+    float: left;
+    width: 200px;
+    height: 20px;
+}
+
+#center {
+    display: inline-block;
+    margin: 0 auto;
+    min-width: 600px;
+}
+
+#right {
+    float: right;
+    width: 200px;
+    height: 20px;
+}
+
+#input-field {
+  width: 200px;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  height: 25px;
+  padding-left: 5px;
+  background-image: url('http://downloadicons.net/sites/default/files/system-of--magnifying-glass-icon-73291.png')
+}
+
+/* ::-webkit-input-placeholder input-field{
+   text-align: center;
+} */
+
+#logo-icon {
+  width: 50px;
+  padding-right: 20px;
+  padding-top: 3px;
+  border-right: 1px solid black;
+  float: left;
+}
+
+#logo-name {
+  float: left;
+  width: 120px;
+  padding-left: 15px;
+}
+
+.nav-icon {
+  float: right;
+  width: 26px;
+  padding: 0 15px 0 15px;
+}
+
+.header {
+  width: 600px;
+  height: 55px;
+  margin: 0 auto;
+  border: 1px solid #efefef;
+  border-radius: 3px 3px 0 0;
+  background: white;
+}
+
+.prf-pic img{
+  float: left;
+  border-radius: 50%;
+  margin: 12px 0 0 12px;
+  width: 30px;
+}
+
+.account-name {
+  font-family: Arial;
+  font-weight: 700;
+  font-size: 14px;
+  float: left;
+  line-height: 55px;
+  margin-left: 10px;
+}
+
+.timestamp {
+  font-family: Arial;
+  color: #a2a2a2;
+  float: right;
+  line-height: 55px;
+  margin-right: 15px;
+}
+
+.img-footer {
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid #efefef;
+  margin-bottom: 70px;
+  margin-top: 0px;
+  border-radius: 0 0 3px 3px;
+  background: white;
+}
+
+.comments-content {      /*the place where comments show up*/
+  margin: 20px;
+  min-height: 30px;
+  padding-bottom: 15px;
+/*   background: red; */
+  border-bottom: 1px solid #efefef;
+}
+
+.comments-field {      /*styling for the text-box*/
+  margin: 20px;
+/*   background: green; */
+}
+
+.comment-text {
+  width: 600px;
+  margin: 0 auto;
+  border-style: solid;
+  border-color: grey;
+  border-width: 0 1px 0 1px;
+}
+
+.text-box {        /*the place where comments are typed*/
+  width: 510px;
+  border: none;
+}
+
+.text-box:focus {
+  outline: none;
+}
+
+
+
+.comment-name {          /*the name that shows up when you write a comment*/
+  font-family: Arial;
+  float: left;
+  margin-right: 5px;
+}
+
+.posted-comment {      /*comment that shows up after you hit enter*/
+  float: left;
+}
+
+.heart-pic img{    /*the small, permanent heart*/
+  width: 20px;
+  float: left;
+}
+
+.like-heart {     /*the heart that occurs when you click*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.main-body {
+  clear: both;
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0px;
+}
+
+.feed-img {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 600px;
+  border-style: solid;
+  border-color: #efefef;
+  border-width: 0 1px 0 1px;
+}
+
+#footer {
+  clear: both;
+  width: 1000px;
+  text-align: left;
+  margin: 0 auto;
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#footer a {
+  margin-right: 1.2em;
+}
+
+#copyright {
+  float: right;
+}
+
+
+  
+  </style>
 </body>
 </html>

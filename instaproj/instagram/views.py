@@ -20,7 +20,7 @@ def home(request):
 
   return render(request,'index.html',{"image":image})
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def search(request):
 
    if 'insta_search' in request.GET and request.GET["insta_search"]:
@@ -35,6 +35,7 @@ def search(request):
 
    return render(request, 'timeline/search.html', context)
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
    profile = Profile.objects.all()
 
@@ -54,6 +55,9 @@ def like(request,image_id):
       Like.likes(image,user.profile)
 
    return redirect('home')
+
+
+@login_required(login_url='/accounts/login/')  
 def add_image(request):
     user = request.user
     if request.method == "POST":
@@ -67,6 +71,7 @@ def add_image(request):
         form = ImageForm()
     return render(request, "add_image.html", {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     user = request.user
     if request.method == "POST":
@@ -84,6 +89,7 @@ def update_profile(request):
         form = ProfileForm()
     return render(request, "update_profile.html", {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def comment(request):
     image_id = request.POST.get("id")
     image = Image.objects.get(pk=image_id)

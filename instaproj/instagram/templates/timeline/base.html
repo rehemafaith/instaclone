@@ -15,7 +15,7 @@
       {% bootstrap_css %}
       <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}  
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Satisfy" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -26,6 +26,9 @@
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   <body>
     {%include "navbar.html" %}
@@ -35,9 +38,48 @@
     {% block scripts %}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
  
       {% bootstrap_javascript %}
+      
+<script>
+  $(".comment-btn").click(e => {
+    e.preventDefault()
+  })
+  function commenter(id) {
+    let comments = document.getElementsByClassName("comments")
+    let image_id = parseInt(id)
+    let commentVals = document.getElementsByClassName("comment-val")
+    comments_arr = []
+    commentVal_arr = []
+    for (let i of comments) {
+      comments_arr.unshift(i)
+    }
+    for (let i of commentVals) {
+      commentVal_arr.unshift(i)
+    }
+    let comment = commentVal_arr[id - 1].value
+    console.log(comment)
+    $.ajax({
+      "url": "/ajax/comment/",
+      "type": "POST",
+      "data": {
+        "id": image_id,
+        "comment": comment,
+        "csrfmiddlewaretoken": '{{csrf_token}}'
+      },
+      "dataType": "json",
+      "success": function (res) {
+        let p = document.createElement("p")
+        p.setAttribute("class", "actual-comment")
+        p.textContent = res['user'] + ": " + res["comment"]
+        comments_arr[image_id - 1].appendChild(p)
+      }
+    })
+    $(".comment-val").val("")
+  }
+</script>
+
+
       {% endblock %}
     <style>
     body{

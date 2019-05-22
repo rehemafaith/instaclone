@@ -39,12 +39,21 @@
             <p><i class="fas fa-comment"></i>13 comments</p>
           </div>
           <hr>
-          <!-- Comment input -->
-          <div class="md-form">
-            <i class="far fa-heart prefix"></i>
-            <input placeholder="Add Comment..." type="text" id="form5" class="form-control">
-          </div>
+          <div class="comments">
+            {% for comment in comments %}
 
+            <p class="actual-comment"><img src="" style="border-radius:50%;" alt=""
+                height="50px" width="50px" class="profile-pic">{{comment.user.username}}: {{comment.comm}}</p>
+            {% endfor %} </div>
+          <!-- Comment input -->
+         
+          <div class="md-form">
+            
+            <input placeholder="Add Comment..." type="text" id="form5" class="form-control">
+            <button type="submit" class="btn btn-sm btn-primary comment-btn" onclick="commenter('{{image.id}}')"
+                style="height: 20px; border-top-left-radius: 0; border-bottom-left-radius: 0">Add</button>
+          </div>
+         
         </div>
         <!-- Card content -->
         {% endfor %}
