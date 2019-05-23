@@ -13,7 +13,7 @@
   <div class="row">
 
     <!-- Grid column -->
-    <div class="col-md-10 col-lg-8">
+    <div class="col-md-8 col-lg-8">
 
       <!-- Card -->
       <div class="card news-card">
@@ -25,10 +25,13 @@
             
           </div>
         </div>
-        {% for img in image %}
-        <!-- Card image-->
-        <img class="card-img-top" src="{{img.photo_image.url}}" alt="Card image cap" ondblclick="thumbsup()">
+        {% for img in images %}
         
+        <!-- Card image-->
+        <img src="{{img.photo_image.url}}" alt="..">
+
+
+
         <!-- Card content -->
         <div class="card-body">
 
@@ -62,14 +65,54 @@
 
     </div>
     <!-- Grid column -->
-
-  </div>
+<div class="col-md-4 col-lg-4">
+  <div class="card" style="padding: 50px;">
+    <div class="rows">
+      <div class="col-md-6 col-lg-6">
+          <a href="profile/"><img src="http://chittagongit.com/download/60603" alt=""></a>
+     
+        <a href="profile/"><h2 class="profile">Profile</h2></a>
+      </div>
+      </div>
+        
+    </div>
+      
+      
+      <a href="add/image" ><button class="button">Add Image</button></a> 
+	</div>
   <!-- Grid row -->
 
 </section>
 <!-- Section: Social news card -->
 </div>
 </div>
+<style>
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: black;
+  background-color: rgb(215, 224, 224);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
 
+.button:hover {background-color: #f1eff1}
+
+.button:active {
+  background-color: #f5fafa;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.profile{
+  font-family: 'Norican', cursive;
+
+}
+</style>
 
 {% endblock %}

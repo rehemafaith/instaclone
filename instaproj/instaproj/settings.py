@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'instagram.apps.InstagramConfig',
     'bootstrap3',
-    'pyuploadcare.dj',
+    
 ]
 
 MIDDLEWARE = [
@@ -76,10 +76,7 @@ TEMPLATES = [
         },
     },
 ]
-UPLOADCARE = {
-     'pub_key': '7daf06fa71305df72b6f',
-     'secret': '995ba37cf426206778c6',
- }
+
 WSGI_APPLICATION = 'instaproj.wsgi.application'
 
 
@@ -89,7 +86,7 @@ WSGI_APPLICATION = 'instaproj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'insta',
+        'NAME': 'ignew',
         'USER': 'faithrehema',
         'PASSWORD':'fefe',
 

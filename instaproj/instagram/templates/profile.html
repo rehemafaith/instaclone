@@ -1,52 +1,91 @@
 {% extends 'timeline/base.html' %}
 {% block content %}
-{{block.super}}
-<br><br>
-<div class="container">
-<div class="span8">
-    <div class="row-fluid">
-  <div class="span2" >
-  {% for img in profile%}
+<div class="container top">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-section">
+                <div class="col-md-5 profile-image">
+                  {%for profile in profile %}
+                    <img src="{{profile.profile_photo.url}}" alt="profile-photo" style="width:200px" style="border-radius: 50%;"  z class="">
+                  
+                </div>
+                <div>
+                  <h1>{{profile.name}}</h1>
+                </div>
+                {% endfor %}
+                
+                <div class="col-md-5 text-center">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span class="username" style="font-family: 'Rajdhani', sans-serif; color: black; font-size: 45px">{{ profile.username }}</span> 
+                        </li>
+                        {% if profile.name == user.username %}
+                        <li class="list-inline-item">
+                            
+                        </li>
+                        <li class="list-inline-item">
+                            <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
+                        </li>
+                        {% else %}
+                        <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile
+                          </button>
+                          <ul class="dropdown-menu">
+                          <li><a href="update/"><span class="icon-wrench"></span> Modify</a></li>
+                          <li><a href="/accounts/password/change">Change Password</a></li>
+                          </ul>
+                        {% endif %}
+                    </ul>
+                   
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold" style="font-size:10px">{{images|length}} </span> <p style="font-family: 'Rajdhani', sans-serif; color: black; font-size: 25px"> Posts</p>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold"  style="font-size:10px">{{followers|length}}</span> <p style="font-family: 'Rajdhani', sans-serif; color: black; font-size: 25px">Followers</p>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="font-weight-bold"  style="font-size:10px">{{following|length}}</span> <p style="font-family: 'Rajdhani', sans-serif; color: black; font-size: 25px">Following</p>
+                        </li>
+                    </ul>
+                   
+                    <p class="font3">{{profile_details.bio|safe}}</p>
+                    {% if profile.name == user.username %}
+                    <p><a href="{% url 'post_image' %}">Add Image</a></p>
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3 style="text-align: center; font-family: 'Pacifico', cursive; font-size: 45px"">All Posts</h3>
+    <div class="row user-images">
+        {% for img in images %}
+        <div class="col-md-4 images">
+            <img src="{{img.image.url}}" alt="Image" height="200px" width="350px">
 
-  <img src="{{img.profile_photo.url}}" class="img-circle" alt="avatar">
-  </div>
-  <div class="span6">
-    <h2>{{img.name}}</h2>
-    <h6>{{img.bio}}</h6>
-    <div class="rows">
-    <div class="col-md-4 col-lg-4">
-        <button>Followers</button>
+
+
+            
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <h2> No Uploaded images</h2>
+        </div>
+        {% endfor %}
     </div>
-    <div class="col-md-4 col-lg-4">
-        <button>Following</button>
-    </div>
-    </div>
-  </div>
-  {% endfor %}
-  <div class="span2">
-    <div class="container">        
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile
-        </button>
-        <ul class="dropdown-menu">
-        <li><a href="update/"><span class="icon-wrench"></span> Modify</a></li>
-        <li><a href="/accounts/password/change">Change Password</a></li>
-        </ul>
-    </div>       
-    <div class="profile-images">
-    {% for img in image %}
-    <a href="{% url 'image_view' image.id %}"></a>
-    <div class="image-card">
-    <img  src="{{img.photo_image.url}}" alt="Card image cap">
-    {%endfor%}
-    </div>
-    </a>         
-    </div>
-    </div>
-    </div>
-  
-</div>       
 </div>
-
-
+<!---modal class-->
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body"><ul class="list-group">
+    
+            <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+            <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

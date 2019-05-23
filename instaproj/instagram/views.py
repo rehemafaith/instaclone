@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from .models import Image,Profile 
 from .email import send_welcome_email
@@ -11,14 +11,11 @@ from .forms import ImageForm, ProfileForm
 
 @login_required(login_url= "/accounts/login/")
 def home(request):
-  image = Image.objects.all()
-
-#   for image in images:
-
-  
-
-
-  return render(request,'index.html',{"image":image})
+   try:
+      images = Image.objects.all()
+   except Image.DoesNotExist:
+      images = None
+   return render(request,'index.html',{"images":images})
 
 @login_required(login_url='/accounts/login/')
 def search(request):
@@ -57,19 +54,20 @@ def like(request,image_id):
    return redirect('home')
 
 
-@login_required(login_url='/accounts/login/')  
+@login_required(login_url='/accounts/login/')
 def add_image(request):
-    user = request.user
-    if request.method == "POST":
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.user = user
-            image.save()
-            return redirect("index")
-    else:
-        form = ImageForm()
-    return render(request, "add_image.html", {"form": form})
+   current_user = request.user
+   if request.method == 'POST':
+       form = ImageForm(request.POST, request.FILES)
+       if form.is_valid():
+           home = form.save(commit=False)
+           home.profile =current_user
+           form.save()
+       return redirect('home')
+   else:
+       form = ImageForm()
+
+   return render(request,'add_image.html',{"form":form,})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):

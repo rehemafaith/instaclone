@@ -5,10 +5,29 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Profile(models.Model):
+  name = models.CharField(max_length = 250)
+  profile_photo = models.ImageField(upload_to = "images/")
+  bio = models.TextField()
+
+  def save_profile(self):
+    self.save()
+  
+  def delete(self):
+    Profile.objects.get(id = self.id).delete()
+  
+  def update(self,field,val):
+    Profile.objects.get(id=self.id).update(field=val)
+    
+
+  def __str__(self):
+    return self.bio
+
+
 class Image(models.Model): 
-  photo_image = models.ImageField(upload_to = "images/")
+  photo_image =models.ImageField(blank=True,upload_to="images/")
   caption = models.TextField()
-  profile = models.ForeignKey('Profile',on_delete=models.deletion.CASCADE,)
+  profile = models.ForeignKey(User,on_delete=models.deletion.CASCADE,)
   likes = models.ManyToManyField(User, related_name = "likes", blank = True)
   
   
@@ -32,26 +51,9 @@ class Image(models.Model):
   def __str__(self):
     return self.caption
  
-class Profile(models.Model):
-  name = models.CharField(max_length = 250)
-  profile_photo = models.ImageField(upload_to = "images/")
-  bio = models.TextField()
-
-  def save_profile(self):
-    self.save()
-  
-  def delete(self):
-    Profile.objects.get(id = self.id).delete()
-  
-  def update(self,field,val):
-    Profile.objects.get(id=self.id).update(field=val)
-    
-
-  def __str__(self):
-    return self.bio
 
 class Like(models.Model):
-  liked = models.ForeignKey('Image',on_delete=models.deletion.CASCADE)
+  liked = models.ForeignKey('Image',on_delete=models.deletion.CASCADE, default=0)
 
   @classmethod
   def likes(cls,img):
