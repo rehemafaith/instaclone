@@ -86,11 +86,15 @@ WSGI_APPLICATION = 'instaproj.wsgi.application'
 
 MODE=config("MODE",default="dev")
 SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG',default=False, cast=bool)
+
+if config('MODE')=="dev":
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ignew',
-        'USER': 'faithrehema',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
         'PASSWORD':'fefe',
 
 
