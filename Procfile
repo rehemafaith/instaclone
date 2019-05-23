@@ -1,1 +1,1 @@
-web: gunicorn instaproj.wsgi
+web: gunicorn instaproj.wsgi --log-file -
