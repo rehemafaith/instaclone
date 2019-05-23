@@ -90,7 +90,7 @@ DEBUG = config('DEBUG',default=False, cast=bool)
 
 if config('MODE')=="dev":
 
-DATABASES = {
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': config('DB_NAME'),
@@ -107,7 +107,7 @@ else:
         )
     }
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASE['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Password validation
