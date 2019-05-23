@@ -6,7 +6,7 @@
             <div class="row top-section">
                 <div class="col-md-5 profile-image">
                   {%for profile in profile %}
-                    <img src="{{profile.profile_photo.url}}" alt="profile-photo" style="width:200px" style="border-radius: 50%;"  z class="">
+                    <img src="{{profile.profile_photo.url}}" alt="profile-photo" style="width:200px" style="border-radius: 50%;" class="rounded-circle">
                   
                 </div>
                 <div>
@@ -28,10 +28,10 @@
                         </li>
                         {% else %}
                         <div class="dropdown">
-                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile
+                          <button class="btn btn-default" type="button" data-toggle="dropdown">Edit Profile
                           </button>
                           <ul class="dropdown-menu">
-                          <li><a href="update/"><span class="icon-wrench"></span> Modify</a></li>
+                          <li><a href="{% url 'update' %}"><span class="icon-wrench"></span> Modify</a></li>
                           <li><a href="/accounts/password/change">Change Password</a></li>
                           </ul>
                         {% endif %}

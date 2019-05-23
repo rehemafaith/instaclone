@@ -11,7 +11,7 @@
   <div id='nav-container'>
     <div id='navbar'>
       <div id='left'>
-        <a href='home'><img src='https://visualpharm.com/assets/854/Instagram-595b40b75ba036ed117d636c.svg' id='logo-icon'></a>
+        <a href="{% url 'home'%}"><img src='https://visualpharm.com/assets/854/Instagram-595b40b75ba036ed117d636c.svg' id='logo-icon'></a>
         <a href="{% url 'home'%}"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png' id='logo-name'></a>
       </div>
       {% if user.is_authenticated %}
