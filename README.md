@@ -1,5 +1,7 @@
-## Instagram
+# Instagram
 This project was generated using python version 3.6.and the Django framework. This is an instagram  clone. It allows a user to create an account, add images with captions and tags. Other users can view the images and search for images based on tags. They can also add comments and like.
+
+## By:Rehema Faith 
 
 ## SETUP INSTRUCTIONS:
 1.Fork the repository to your work space.
@@ -22,4 +24,6 @@ This project was generated using python version 3.6.and the Django framework. Th
 To get more help on the Python CLI use ng help or go check out the Python CLI README and Python documentation. You may also read the news API documentation on the news API website.
 
 ## CONTACT INFORMATION
-For more information or clarification reach me through my email address : tmuhando99@gmail.com
+For more information or clarification reach me through my email address : rehemafaith01@gmail.com
+
+## [MIT LICENSE]()
